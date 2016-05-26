@@ -1,6 +1,6 @@
 {
   "name": "xwebgl.js",
   "tagline": "A simple WEBGL wrapper for HTML",
-  "body": "### Welcome to xwebgl.js.\r\n\r\nxwebgl.js is a simple, object-oriented wrapper API for WebGL.\r\n\r\n### Features\r\nxwebgl.js is a WebGL/HTML5 based wrapper for web application design, allowing both high-level and low-level programming with high performances. \r\n\r\n",
+  "body": "![xwebgl logo](https://github.com/amexn/xwebgl.js/blob/master/demo/xwebgllogo.png)\r\n\r\n### Welcome to xwebgl.js.\r\n\r\nxwebgl.js is a simple, object-oriented wrapper API for WebGL.\r\n\r\n### Features\r\nxwebgl.js is a WebGL/HTML5 based wrapper for web application design, allowing both high-level and low-level programming with high performances. \r\n\r\n",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
