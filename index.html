@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+   
+</head>
+
+<body>
+<!-- The canvas element -->
+<script id="shader-vs" type="x-shader/x-vertex">
+    attribute vec4 vPosition;
+	attribute vec4 vertexColor;
+	
+	varying lowp vec4 vColor;
+    void main() {
+        gl_Position = vPosition;
+		vColor = vertexColor;
+    }
+</script>
+
+<!-- Fragment shader -->
+<script id="shader-fs" type="x-shader/x-fragment">
+    precision highp float;
+	varying lowp vec4 vColor;
+    void main() {
+        gl_FragColor = vColor;
+    }
+</script>
+    <canvas id="application-canvas"  width = "600" height = "600"></canvas>
+	 <!-- The script -->
+	<script src="dist/xwebgl.js"></script>
+    <script>
+	 var canvas = document.getElementById("application-canvas");
+	 var gl = canvas.getContext('experimental-webgl');
+	 var center = new xwebgl.Vec2(5,5);
+	 var color = new xwebgl.Color(1,1,0);
+	 var renderer = new xwebgl.GLRenderer(canvas);
+	 renderer.setClearColor(color,.1);
+	 var vertices = [
+        -0.5, -0.5, 0.0,
+         0.0,  0.5, 0.0,
+         0.5, -0.5, 0.0
+    ];
+	var colors = [
+        1,0,1,1,
+        1,0,1,1,
+        1,0,1,1
+    ];
+
+ 	//  var vertices1 = [
+    //    -0.5+.5, -0.5, 0.0,
+    //     0.0+.5,  0.5, 0.0,
+    //     0.5+.5, -0.5, 0.0
+  //  ];  
+	 var vertshaderString =  document.getElementById("shader-vs").textContent; //new xwebgl.GLShader(gl,gl.VERTEX_SHADER,"shader-vs");
+	 var fragshaderString =  document.getElementById("shader-fs").textContent; //new xwebgl.GLShader(gl,gl.FRAGMENT_SHADER,"shader-fs");
+	 
+	 var vertshader = new xwebgl.GLShader(gl,gl.VERTEX_SHADER,vertshaderString);
+	 var fragshader = new xwebgl.GLShader(gl,gl.FRAGMENT_SHADER,fragshaderString);
+	 
+	 var program  = new xwebgl.GLProgram(gl,vertshader,fragshader);
+
+	  
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        alert("Could not initialise shaders");
+    } 
+	var mesh = new xwebgl.Mesh(vertices,colors,canvas,3,program);
+	//var mesh1 = new xwebgl.Mesh(vertices1,canvas,3,program);
+	var scene = [mesh];
+
+	renderer.render(scene);
+	
+	 //var app = new xwebgl.Application(canvas);
+	 // window.alert(color.r);
+	 //setTimeout(draw, 1000/30);
+	</script>
+
+</body>
+</html>
